@@ -1,0 +1,46 @@
+{
+  "name": "sympm",
+  "version": "0.1.0",
+  "description": "sympm allows you to run npm install from inside of a Vagrant virtual machine without hitting symlink issues due to shared folders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "sympm": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezekg/sympm.git"
+  },
+  "keywords": [
+    "npm",
+    "install",
+    "vagrant",
+    "virtual",
+    "machine",
+    "vm",
+    "symlink",
+    "annoying",
+    "bug",
+    "help",
+    "kill",
+    "me",
+    "plz"
+  ],
+  "author": "Ezekiel Gabrielse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ezekg/sympm/issues"
+  },
+  "homepage": "https://github.com/ezekg/sympm#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "meow": "^3.7.0",
+    "untildify": "^2.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
