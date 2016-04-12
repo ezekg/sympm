@@ -16,7 +16,8 @@ npm install -g sympm
 
 ### Install
 Creates a symlink from `./node_modules` to `~/.sympm/<currentDirBasename>/node_modules`
-and runs `npm install`.
+and runs `npm install`. You can then use `npm` normally with the new symlinked
+`./node_modules` directory.
 
 ```bash
 sympm install
@@ -30,11 +31,13 @@ sympm uninstall
 ```
 
 ### Clean
-Removes all installed modules in `~/.sympm/*/node_modules` by running
+Removes all installed modules in `~/.sympm/*/node_modules/*` by running
 `rm -rf ~/.sympm/*/node_modules/*`.
 ```bash
 sympm clean
 ```
+
+To remove the symlink, simply `rm ./node_modules` and you're good to go.
 
 ## License
 MIT © [Ezekiel Gabrielse](https://github.com/ezekg)
