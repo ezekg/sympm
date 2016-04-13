@@ -1,6 +1,6 @@
 {
   "name": "sympm",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "sympm allows you to run npm install from inside of a Vagrant virtual machine without hitting symlink issues due to shared folders.",
   "main": "index.js",
   "scripts": {
