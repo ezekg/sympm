@@ -7,6 +7,8 @@ const meow = require("meow")
 const cp = require("child_process")
 const path = require("path")
 const fs = require("fs")
+const ora = require("ora")
+var spinner
 
 const cli = meow(`
   Usage
@@ -80,6 +82,11 @@ switch (cli.input[0]) {
   // Create symlink to get node_modules out of shared folder territory and
   // then attempt to run `npm install` with the new setup
   case "install":
+    spinner = ora({
+      text: "Installing",
+      color: "green"
+    })
+
     try {
       cp.execSync(`ln -s ${moduleDir} ./node_modules`)
     } catch (err) {
@@ -87,7 +94,9 @@ switch (cli.input[0]) {
     }
 
     let npm = cp.spawn("npm", ["install"])
-    if (!cli.flags.quiet) {
+    if (cli.flags.quiet) {
+      spinner.start()
+    } else {
       npm.stdout.on("data", (data) => {
         console.log(data.toString())
       })
@@ -97,6 +106,8 @@ switch (cli.input[0]) {
     }
 
     npm.on("close", (code) => {
+      spinner.stop()
+
       if (code !== 0) {
         throwErr(`Failed to successfully run npm install. Error log is likely in ./npm-debug.log.`)
       }
@@ -108,6 +119,12 @@ switch (cli.input[0]) {
 
   // Remove everything from a single project, i.e. rm -rf ~/.sympm/${moduleDir}
   case "uninstall":
+    spinner = ora({
+      text: "Uninstalling",
+      color: "yellow"
+    })
+    spinner.start()
+
     try {
       cp.execSync(`rm -rf ${moduleDir}`)
     } catch (err) {
@@ -120,17 +137,25 @@ switch (cli.input[0]) {
       throwErr(`Could not remove symlink ./node_modules.`)
     }
 
+    spinner.stop()
     printSuccess(`Successfully uninstalled modules from ${moduleDir}.`)
     break;
 
   // Remove everything from all projects, i.e. rm -rf ~/.sympm/*
   case "clean":
+    spinner = ora({
+      text: "Cleaning",
+      color: "red"
+    })
+    spinner.start()
+
     try {
       cp.execSync(`rm -rf ${path.join(sympmDir, "*")}`)
     } catch (err) {
       throwErr(`Could not clean modules installed in ${sympmDir}.`)
     }
 
+    spinner.stop()
     printSuccess(`Successfully cleaned modules from ${sympmDir}.`)
     break;
 
