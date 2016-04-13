@@ -88,9 +88,9 @@ switch (cli.input[0]) {
     })
 
     try {
-      cp.execSync(`ln -s ${moduleDir} ./node_modules`, { stdio: [null, null, null] })
+      cp.execSync(`ln -sf ${moduleDir} ./node_modules`, { stdio: [null, null, null] })
     } catch (err) {
-      throwErr(`Could not symlink ./node_modules -> ${moduleDir}. If ./node_modules already exists, try removing it first.`)
+      throwErr(`Could not symlink ./node_modules -> ${moduleDir}.`)
     } finally {
       spinner.stop()
     }
@@ -138,7 +138,7 @@ switch (cli.input[0]) {
     try {
       cp.execSync(`rm ./node_modules`, { stdio: [null, null, null] })
     } catch (err) {
-      throwErr(`Could not remove symlink ./node_modules.`)
+      throwErr(`Could not remove symlink ./node_modules. Does it exist?`)
     } finally {
       spinner.stop()
     }
