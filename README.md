@@ -1,4 +1,5 @@
 # `sympm`
+[![Travis](https://img.shields.io/travis/ezekg/sympm.svg?style=flat-square)](https://travis-ci.org/ezekg/sympm)
 [![NPM](https://img.shields.io/npm/v/sympm.svg?style=flat-square)](https://www.npmjs.com/package/sympm)
 
 `sympm` allows you to run `npm install` from inside of a Vagrant virtual machine

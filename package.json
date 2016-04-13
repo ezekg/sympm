@@ -4,7 +4,9 @@
   "description": "sympm allows you to run npm install from inside of a Vagrant virtual machine without hitting symlink issues due to shared folders.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "echo '{\"dependencies\":{\"sympm\":\">=0.2.0\"}}' > specs/package.json",
+    "test": "mocha -t 99999 specs/sympm-spec.js",
+    "posttest": "rm specs/package.json"
   },
   "bin": {
     "sympm": "./index.js"
