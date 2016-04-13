@@ -71,7 +71,7 @@ try {
   }
 
   // Create required directory structure
-  let ps = cp.spawnSync("mkdir", ["-p", moduleDir])
+  let ps = cp.spawnSync("mkdir", ["-p", moduleDir], { stdio: [null, null, null] })
   if (ps.status !== 0) {
     throwErr(`Could not create ${moduleDir}. Please check the directory's permissions.`)
   }
@@ -88,7 +88,7 @@ switch (cli.input[0]) {
     })
 
     try {
-      cp.execSync(`ln -s ${moduleDir} ./node_modules`)
+      cp.execSync(`ln -s ${moduleDir} ./node_modules`, { stdio: [null, null, null] })
     } catch (err) {
       throwErr(`Could not symlink ./node_modules -> ${moduleDir}. If ./node_modules already exists, try removing it first.`)
     } finally {
@@ -128,7 +128,7 @@ switch (cli.input[0]) {
     spinner.start()
 
     try {
-      cp.execSync(`rm -rf ${moduleDir}`)
+      cp.execSync(`rm -rf ${moduleDir}`, { stdio: [null, null, null] })
     } catch (err) {
       throwErr(`Could not remove modules installed in ${moduleDir}.`)
     } finally {
@@ -136,7 +136,7 @@ switch (cli.input[0]) {
     }
 
     try {
-      cp.execSync(`rm ./node_modules`)
+      cp.execSync(`rm ./node_modules`, { stdio: [null, null, null] })
     } catch (err) {
       throwErr(`Could not remove symlink ./node_modules.`)
     } finally {
@@ -155,7 +155,7 @@ switch (cli.input[0]) {
     spinner.start()
 
     try {
-      cp.execSync(`rm -rf ${path.join(sympmDir, "*")}`)
+      cp.execSync(`rm -rf ${path.join(sympmDir, "*")}`, { stdio: [null, null, null] })
     } catch (err) {
       throwErr(`Could not clean modules installed in ${sympmDir}.`)
     } finally {
