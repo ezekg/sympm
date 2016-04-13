@@ -1,4 +1,5 @@
 # `sympm`
+[![NPM](https://img.shields.io/npm/v/sympm.svg?style=flat-square)](https://www.npmjs.com/package/sympm)
 
 `sympm` allows you to run `npm install` from inside of a Vagrant virtual machine
 without hitting symlink issues due to shared folders. It does so by symlinking
