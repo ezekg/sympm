@@ -51,7 +51,7 @@ if (cli.flags.version) {
 }
 
 const sympmDir = untildify(`~/.sympm`)
-const moduleDir = path.join(sympmDir, path.basename(__dirname), "node_modules")
+const moduleDir = path.join(sympmDir, path.basename(process.cwd()), "node_modules")
 
 // Make sure ~/.sympm is accessible
 try {
