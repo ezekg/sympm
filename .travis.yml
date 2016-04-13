@@ -1,0 +1,9 @@
+sudo: false
+language: node_js
+before_script:
+  - npm install -g sympm
+node_js:
+  - "5"
+  - "4"
+  - "0.12"
+  - "0.10"
