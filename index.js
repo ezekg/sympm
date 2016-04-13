@@ -13,16 +13,27 @@ const cli = meow(`
     $ sympm install
       Creates a symlink from ./node_modules to ~/.sympm/<currentDirBasename>/node_modules and runs npm install.
     $ sympm uninstall
-      Removes installed modules in ~/.sympm/<currentDirBasename>/node_modules/*.
+      Removes modules installed in ~/.sympm/<currentDirBasename>.
     $ sympm clean
-      Removes all installed modules in ~/.sympm/*/node_modules/*.
+      Removes all modules installed in ~/.sympm/*.
 
   Options
-    --quiet  Suppress output from npm
+    -q, --quiet    Suppress output from npm
+    -v, --version  Print version
 
   Examples
     $ sympm install
-`)
+`, {
+  alias: {
+    q: "quiet",
+    v: "version"
+  }
+})
+
+const showVersion = () => {
+  console.log(cli.pkg.version)
+  process.exit(0)
+}
 
 const printSuccess = (msg) => {
   console.log(chalk.green(msg))
@@ -31,6 +42,10 @@ const printSuccess = (msg) => {
 const throwErr = (errMsg) => {
   console.log(chalk.red(errMsg))
   process.exit(1)
+}
+
+if (cli.flags.version) {
+  showVersion()
 }
 
 const sympmDir = untildify(`~/.sympm`)
