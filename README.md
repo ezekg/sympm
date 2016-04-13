@@ -13,8 +13,9 @@ npm install -g sympm
 ```
 
 ## Usage
+***The commands below should be run within your virtual machine via `vagrant ssh`.***
 
-### Install
+### `install`
 Creates a symlink from `./node_modules` to `~/.sympm/<currentDirBasename>/node_modules`
 and runs `npm install`. You can then use `npm` normally with the new symlinked
 `./node_modules` directory.
@@ -23,21 +24,24 @@ and runs `npm install`. You can then use `npm` normally with the new symlinked
 sympm install
 ```
 
-### Uninstall
-Removes installed modules in `~/.sympm/<currentDirBasename>/node_modules` by
-running `rm -rf ~/.sympm/<currentDirBasename>/node_modules/*`.
+### `uninstall`
+Removes modules installed in `~/.sympm/<currentDirBasename>` by running
+`rm -rf ~/.sympm/<currentDirBasename>`, and removes the symlinked `./node_modules`
+directory.
+
 ```bash
 sympm uninstall
 ```
 
-### Clean
-Removes all installed modules in `~/.sympm/*/node_modules/*` by running
-`rm -rf ~/.sympm/*/node_modules/*`.
+### `clean`
+Removes all modules installed in `~/.sympm/*` by running `rm -rf ~/.sympm/*`.
+
 ```bash
 sympm clean
 ```
 
-To remove the symlink, simply `rm ./node_modules` and you're good to go.
+To remove the symlink, simply `rm ./node_modules` and you're good to go. To
+completely uninstall `sympm`, remove the symlink and then run `rm -rf ~/.sympm`.
 
 ## License
 MIT © [Ezekiel Gabrielse](https://github.com/ezekg)

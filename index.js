@@ -91,10 +91,10 @@ switch (cli.input[0]) {
 
     break;
 
-  // Remove everything from a single project, i.e. rm -rf ~/.sympm/${moduleDir}/*
+  // Remove everything from a single project, i.e. rm -rf ~/.sympm/${moduleDir}
   case "uninstall":
     try {
-      cp.execSync(`rm -rf ${path.join(moduleDir, "*")}`)
+      cp.execSync(`rm -rf ${moduleDir}`)
     } catch (err) {
       throwErr(`Could not remove modules installed in ${moduleDir}.`)
     }
@@ -102,10 +102,10 @@ switch (cli.input[0]) {
     printSuccess(`Successfully uninstalled modules from ${moduleDir}.`)
     break;
 
-  // Remove everything from all projects, i.e. rm -rf ~/.sympm/*/node_modules/*
+  // Remove everything from all projects, i.e. rm -rf ~/.sympm/*
   case "clean":
     try {
-      cp.execSync(`rm -rf ${path.join(sympmDir, "*", "node_modules", "*")}`)
+      cp.execSync(`rm -rf ${path.join(sympmDir, "*")}`)
     } catch (err) {
       throwErr(`Could not clean modules installed in ${sympmDir}.`)
     }
