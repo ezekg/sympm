@@ -114,6 +114,12 @@ switch (cli.input[0]) {
       throwErr(`Could not remove modules installed in ${moduleDir}.`)
     }
 
+    try {
+      cp.execSync(`rm ./node_modules`)
+    } catch (err) {
+      throwErr(`Could not remove symlink ./node_modules.`)
+    }
+
     printSuccess(`Successfully uninstalled modules from ${moduleDir}.`)
     break;
 
