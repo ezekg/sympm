@@ -91,6 +91,8 @@ switch (cli.input[0]) {
       cp.execSync(`ln -s ${moduleDir} ./node_modules`)
     } catch (err) {
       throwErr(`Could not symlink ./node_modules -> ${moduleDir}. If ./node_modules already exists, try removing it first.`)
+    } finally {
+      spinner.stop()
     }
 
     let npm = cp.spawn("npm", ["install"])
@@ -129,15 +131,18 @@ switch (cli.input[0]) {
       cp.execSync(`rm -rf ${moduleDir}`)
     } catch (err) {
       throwErr(`Could not remove modules installed in ${moduleDir}.`)
+    } finally {
+      spinner.stop()
     }
 
     try {
       cp.execSync(`rm ./node_modules`)
     } catch (err) {
       throwErr(`Could not remove symlink ./node_modules.`)
+    } finally {
+      spinner.stop()
     }
 
-    spinner.stop()
     printSuccess(`Successfully uninstalled modules from ${moduleDir}.`)
     break;
 
@@ -153,9 +158,10 @@ switch (cli.input[0]) {
       cp.execSync(`rm -rf ${path.join(sympmDir, "*")}`)
     } catch (err) {
       throwErr(`Could not clean modules installed in ${sympmDir}.`)
+    } finally {
+      spinner.stop()
     }
 
-    spinner.stop()
     printSuccess(`Successfully cleaned modules from ${sympmDir}.`)
     break;
 
