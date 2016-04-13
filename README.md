@@ -16,7 +16,7 @@ npm install -g sympm
 ## Usage
 ***The commands below should be run within your virtual machine via `vagrant ssh`.***
 
-### `install`
+### Install
 Creates a symlink from `./node_modules` to `~/.sympm/<currentDirBasename>/node_modules`
 and runs `npm install`. You can then use `npm` normally with the new symlinked
 `./node_modules` directory.
@@ -25,7 +25,7 @@ and runs `npm install`. You can then use `npm` normally with the new symlinked
 sympm install
 ```
 
-### `uninstall`
+### Uninstall
 Removes modules installed in `~/.sympm/<currentDirBasename>` by running
 `rm -rf ~/.sympm/<currentDirBasename>`, and removes the symlinked `./node_modules`
 directory.
@@ -34,7 +34,7 @@ directory.
 sympm uninstall
 ```
 
-### `clean`
+### Clean
 Removes all modules installed in `~/.sympm/*` by running `rm -rf ~/.sympm/*`.
 
 ```bash
